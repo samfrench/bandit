@@ -78,6 +78,7 @@ defmodule Bandit.HTTP1.Adapter do
           case version do
             {1, 1} -> :"HTTP/1.1"
             {1, 0} -> :"HTTP/1.0"
+            _      -> :"HTTP/1.1"
           end
 
         do_read_headers(%{req | buffer: rest, version: version}, :httph, headers, method, path)

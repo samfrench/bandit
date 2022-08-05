@@ -24,6 +24,9 @@ defmodule Bandit.InitialHandler do
       {:no_match, {:no_match, data}} ->
         {:switch, Bandit.HTTP1.Handler, data, state}
 
+      {_, {:error, error}} ->
+        {:error, error}
+
       _other ->
         {:error, "Could not determine a protocol", state}
     end
@@ -39,7 +42,7 @@ defmodule Bandit.InitialHandler do
         Bandit.HTTP1.Handler
 
       _ ->
-        :no_match
+        Bandit.HTTP1.Handler
     end
   end
 
